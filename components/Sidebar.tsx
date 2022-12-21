@@ -21,6 +21,7 @@ import * as EmailValidator from  'email-validator'
 import { addDoc, collection, query, where } from 'firebase/firestore'
 import {useCollection} from 'react-firebase-hooks/firestore'
 import { Conversation } from '../types/Conversation'
+import ConversationSelect from './ConversationSelect'
 
 const StyledContainer = styled.div`
     height: 100vh;
@@ -96,7 +97,7 @@ const Sidebar = () => {
     const createConversation = async () => {
         if(!recipientEmail) return
 
-        if (EmailValidator.validate(recipientEmail) && !isInvitingSelf && !isConversationAlreadyExists){
+        if (EmailValidator.validate(recipientEmail) && !isInvitingSelf && !isConversationAlreadyExists(recipientEmail)){
             //Add conversation to conversation db collection
             // A conversation is between the logger user and the user invited
              
@@ -146,6 +147,8 @@ const Sidebar = () => {
         </StyledSidebarButton>
         
         {/* List of conversations */}
+
+        {conversationsSnapShot?.docs.map(conversation => (<ConversationSelect key={conversation.id} id={conversation.id} conversationUsers={(conversation.data() as Conversation).users} />))}
 
         <Dialog open={isOpenNewConversationDialog} onClose={() => {
             toggleNewConversationDialog(false)
