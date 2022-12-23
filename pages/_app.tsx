@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app'
 import Login from './login'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth, db } from '../config/firebase'
-import Loading from '../components/Loading'
+import Loading from '../components/Atoms/Loading/Loading'
 import { useEffect } from 'react'
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore'
 

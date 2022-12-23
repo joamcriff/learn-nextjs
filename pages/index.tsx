@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Sidebar from '../components/Sidebar'
+import Messenger from './Messenger/Messenger'
 
 export default function Home() {
   return (
@@ -10,7 +10,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-    <Sidebar />
+    <Messenger />
     </div>
   )
 }
